@@ -69,17 +69,17 @@
             cursor: pointer;
             border: none;
             border-radius: 8px;
-            background-color: #8e44ad; /* Новый цвет для кнопок */
+            background-color: #7f8c8d; /* Серый цвет */
             color: white;
             transition: background-color 0.3s ease;
         }
 
         .dial-pad button:hover {
-            background-color: #9b59b6; /* Цвет кнопки при наведении */
+            background-color: #95a5a6;
         }
 
         .dial-pad button:active {
-            background-color: #7d3c9a; /* Цвет кнопки при нажатии */
+            background-color: #6c7a89;
         }
 
         .dial-pad button:focus {
@@ -110,9 +110,8 @@
             if (inputPassword.length < correctPassword.length) {
                 inputPassword += num;
                 let display = document.getElementById("password-display");
-                display.textContent = num; // Показать число сразу
+                display.textContent = num;
 
-                // Через 500 мс заменить число на звёздочку
                 setTimeout(() => {
                     display.textContent = "*".repeat(inputPassword.length);
                 }, 500);
