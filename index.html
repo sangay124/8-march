@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проверка пароля</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        h2 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .dial-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .password-display {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            letter-spacing: 10px;
+            color: #444;
+            width: 200px;
+            height: 40px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f9f9f9;
+        }
+
+        .dial-pad {
+            display: grid;
+            grid-template-columns: repeat(3, 80px);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .dial-pad button {
+            width: 80px;
+            height: 80px;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            border-radius: 8px;
+            background-color: #8e44ad; /* Новый цвет для кнопок */
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+
+        .dial-pad button:hover {
+            background-color: #9b59b6; /* Цвет кнопки при наведении */
+        }
+
+        .dial-pad button:active {
+            background-color: #7d3c9a; /* Цвет кнопки при нажатии */
+        }
+
+        .dial-pad button:focus {
+            outline: none;
+        }
+
+        .dial-pad button:nth-child(10) {
+            background-color: #e74c3c; /* Кнопка сброса */
+        }
+
+        .dial-pad button:nth-child(10):hover {
+            background-color: #c0392b;
+        }
+
+        .dial-pad button:nth-child(12) {
+            background-color: #2ecc71; /* Кнопка входа */
+        }
+
+        .dial-pad button:nth-child(12):hover {
+            background-color: #27ae60;
+        }
+    </style>
+    <script>
+        let inputPassword = "";
+        const correctPassword = "41592";
+
+        function addNumber(num) {
+            if (inputPassword.length < correctPassword.length) {
+                inputPassword += num;
+                let display = document.getElementById("password-display");
+                display.textContent = num; // Показать число сразу
+
+                // Через 500 мс заменить число на звёздочку
+                setTimeout(() => {
+                    display.textContent = "*".repeat(inputPassword.length);
+                }, 500);
+            }
+        }
+
+        function checkPassword() {
+            if (inputPassword === correctPassword) {
+                window.location.href = "index2.html";
+            } else {
+                alert("Неверный пароль. Попробуйте еще раз.");
+                clearPassword();
+            }
+        }
+
+        function clearPassword() {
+            inputPassword = "";
+            document.getElementById("password-display").textContent = "";
+        }
+    </script>
+</head>
+<body>
+    <h2>Введите пароль</h2>
+    <div class="dial-container">
+        <div class="password-display" id="password-display"></div>
+        <div class="dial-pad">
+            <button onclick="addNumber(1)">1</button>
+            <button onclick="addNumber(2)">2</button>
+            <button onclick="addNumber(3)">3</button>
+            <button onclick="addNumber(4)">4</button>
+            <button onclick="addNumber(5)">5</button>
+            <button onclick="addNumber(6)">6</button>
+            <button onclick="addNumber(7)">7</button>
+            <button onclick="addNumber(8)">8</button>
+            <button onclick="addNumber(9)">9</button>
+            <button onclick="clearPassword()">Сброс</button>
+            <button onclick="addNumber(0)">0</button>
+            <button onclick="checkPassword()">Войти</button>
+        </div>
+    </div>
+</body>
+</html>
